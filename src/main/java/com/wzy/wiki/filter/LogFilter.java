@@ -1,3 +1,4 @@
+/*
 package com.wzy.wiki.filter;
 
 import org.slf4j.Logger;
@@ -39,3 +40,4 @@ public class LogFilter implements Filter {
 
 
 }
+*/

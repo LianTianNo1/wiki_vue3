@@ -1,3 +1,4 @@
+/*
 package com.wzy.wiki.interceptor;
 
 import org.slf4j.Logger;
@@ -9,9 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+*/
 /**
  * 拦截器：Spring框架特有的，常用于登录校验，权限校验，请求日志打印
- */
+ *//*
+
 @Component
 public class LogInterceptor implements HandlerInterceptor {
 
@@ -36,3 +39,4 @@ public class LogInterceptor implements HandlerInterceptor {
         LOG.info("-----------------LogInterceptor 结束 耗时: {} ms-----------------",System.currentTimeMillis() - startTime);
     }
 }
+*/

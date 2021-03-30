@@ -1,3 +1,4 @@
+/*
 package com.wzy.wiki.config;
 
 import com.wzy.wiki.interceptor.LogInterceptor;
@@ -18,3 +19,4 @@ public class SpringMvcConfig implements WebMvcConfigurer {
     }
 
 }
+*/
