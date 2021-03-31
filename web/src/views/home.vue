@@ -46,7 +46,7 @@
     <a-layout-content
             :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
     >
-      <a-list item-layout="vertical" size="large" :grid="{ gutter: 20, column: 3 }" :pagination="pagination" :data-source="ebooks">
+      <a-list item-layout="vertical" size="large" :grid="{ gutter: 20, column: 3 }"  :data-source="ebooks">
         <template #renderItem="{ item }">
           <a-list-item key="item.name">
             <template #actions>
@@ -72,7 +72,7 @@
 import { defineComponent,onMounted,ref,reactive,toRef } from 'vue';
 import axios from 'axios';
 
-const listData: any = [];
+/*const listData: any = [];
 for (let i = 0; i < 23; i++) {
   listData.push({
     href: 'https://www.antdv.com/',
@@ -83,7 +83,7 @@ for (let i = 0; i < 23; i++) {
     content:
             'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
   });
-}
+}*/
 
 
 export default defineComponent({
@@ -92,18 +92,22 @@ export default defineComponent({
     const ebooks = ref();
     const ebook1 = reactive({books:[]})
 
-    onMounted(() =>{
-      axios.get("/ebook/list").then(function (response) {
+    onMounted(() => {
+      axios.get("/ebook/list",{
+        params: {
+          page: 1,
+          size: 1000
+        }
+      }).then((response) => {
         const data = response.data;
-        ebooks.value = data.content;
-        ebook1.books = data.content;
+        ebooks.value = data.content.list;
       });
     });
 
     return{
       ebooks,
-      ebooks2:toRef(ebook1,"books"),
-      listData,
+      // ebooks2:toRef(ebook1,"books"),
+      // listData,
       pagination:{
         onChange: (page: any) => {
           console.log(page);
