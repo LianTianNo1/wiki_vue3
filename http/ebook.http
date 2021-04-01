@@ -1,3 +1,9 @@
 GET http://localhost:8081/ebook/list?page=1&size=4
 
 ###
+
+POST http://localhost:8081/ebook/save
+
+{}
+
+###
