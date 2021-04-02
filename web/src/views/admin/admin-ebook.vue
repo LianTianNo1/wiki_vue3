@@ -24,9 +24,17 @@
             <a-button type="primary" @click="edit(record)">
               编辑
             </a-button>
-            <a-button type="danger">
-              删除
-            </a-button>
+            <a-popconfirm
+                    title="删除后不可恢复，确认删除？"
+                    ok-text="是"
+                    cancel-text="否"
+                    @confirm="handleDelete(record.id)"
+            >
+              <a-button type="danger">
+                删除
+              </a-button>
+            </a-popconfirm>
+
           </a-space>
         </template>
       </a-table>
@@ -53,7 +61,7 @@
         <a-input v-model:value="ebook.category2Id"/>
       </a-form-item>
       <a-form-item label="描述">
-        <a-input v-model:value="ebook.desc" type="textarea"/>
+        <a-input v-model:value="ebook.description" type="textarea"/>
       </a-form-item>
     </a-form>
   </a-modal>
@@ -62,6 +70,7 @@
 <script lang="ts">
   import { defineComponent, onMounted, ref } from 'vue';
   import axios from 'axios';
+  import { message } from 'ant-design-vue';
 
   export default defineComponent({
     name: 'AdminEbook',
@@ -155,7 +164,7 @@
           if (data.success){
             modalVisible.value = false;
             modalLoading.value = false;
-
+            message.success('添加成功！');
             //重新加载列表
             handleQuery({
               page: pagination.value.current,
@@ -182,6 +191,24 @@
         ebook.value = {};
       };
 
+      /**
+       * 删除
+       */
+      const handleDelete = (id: number) => {
+        axios.delete("/ebook/delete/" + id).then((response) => {
+          const data = response.data; //data = CommonResp
+          if (data.success){
+            message.success('删除成功！');
+            //重新加载列表
+            handleQuery({
+              page: pagination.value.current,
+              size: pagination.value.pageSize
+            });
+          }
+        });
+      };
+
+
       onMounted(() => {
         handleQuery({
           page: 1,
@@ -198,6 +225,7 @@
 
         edit,
         add,
+        handleDelete,
 
         ebook,
         modalVisible,
