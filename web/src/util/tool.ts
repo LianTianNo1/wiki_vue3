@@ -27,11 +27,33 @@ export class Tool {
     }
   }
 
+
+ /* public static array2Tree(array: any, parentId: number){
+    if (Tool.isEmpty(array)){
+      return [];
+    }
+    const result = [];
+    for (let i = 0; i < array.length; i++){
+      const c = array[i];
+      if (Number(c.parent) === Number(parentId)){
+        result.push(c);
+
+        //递归查看当前节点对应的子节点
+        const children = Tool.array2Tree(array,c.id);
+        if (Tool.isNotEmpty(children)){
+          c.children = children;
+        }
+      }
+    }
+    return result;
+  }
+*/
+
   /**
    * 使用递归将数组转为树形结构
    * 父ID属性为parent
    */
-  /*public static array2Tree (array: any, parentId: number) {
+  public static array2Tree (array: any, parentId: number) {
     if (Tool.isEmpty(array)) {
       return [];
     }
@@ -51,7 +73,7 @@ export class Tool {
       }
     }
     return result;
-  }*/
+  }
 
   /**
    * 随机生成[len]长度的[radix]进制数
