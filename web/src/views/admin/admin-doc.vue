@@ -75,19 +75,21 @@
       <a-form-item label="顺序">
         <a-input v-model:value="doc.sort"/>
       </a-form-item>
+      <a-form-item label="内容">
+        <div id="content"></div>
+      </a-form-item>
     </a-form>
   </a-modal>
 </template>
 
 <script lang="ts">
-  import { defineComponent, onMounted, ref } from 'vue';
-  import axios from 'axios';
-  import { message } from 'ant-design-vue';
-  import {Tool} from "@/util/tool";
-  import {useRoute} from "vue-router";
-  import { Modal } from 'ant-design-vue';
-  import { createVNode} from 'vue';
-  import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+import { defineComponent, onMounted, ref, createVNode } from 'vue';
+import axios from 'axios';
+import {message, Modal} from 'ant-design-vue';
+import {Tool} from "@/util/tool";
+import {useRoute} from "vue-router";
+import ExclamationCircleOutlined from "@ant-design/icons-vue/ExclamationCircleOutlined";
+import E from 'wangeditor';
 
   export default defineComponent({
     name: 'AdminDoc',
@@ -164,6 +166,8 @@
       const doc = ref({});
       const modalVisible = ref(false);
       const modalLoading = ref(false);
+      const editor = new E('#content');
+
       const handleModalOk = () => {
         modalLoading.value = true;
 
@@ -261,6 +265,9 @@
 
         //为选择树添加一个 “无” 字
         treeSelectData.value.unshift({id: 0, name: '无'});
+        setTimeout(function () {
+          editor.create();
+        },100);
       };
 
       /**
@@ -276,6 +283,9 @@
 
         //为选择树添加一个 "无" 字
         treeSelectData.value.unshift({id: 0, name: "无"});
+        setTimeout(function () {
+          editor.create();
+        },100);
       };
 
 
