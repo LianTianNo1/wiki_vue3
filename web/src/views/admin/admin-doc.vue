@@ -38,6 +38,7 @@
                     cancel-text="否"
                     @confirm="handleDelete(record.id)"
             >
+
               <a-button type="danger">
                 删除
               </a-button>
@@ -71,19 +72,6 @@
         >
         </a-tree-select>
       </a-form-item>
-      <!--<a-form-item label="父文档">
-        <a-select
-                v-model:value="doc.parent"
-                ref="select"
-        >
-          <a-select-option value="0">
-            无
-          </a-select-option>
-          <a-select-option v-for="c in level1" :key="c.id" :value="c.id" :disabled="doc.id === c.id">
-           {{c.name}}
-          </a-select-option>
-        </a-select>
-      </a-form-item>-->
       <a-form-item label="顺序">
         <a-input v-model:value="doc.sort"/>
       </a-form-item>
@@ -97,6 +85,9 @@
   import { message } from 'ant-design-vue';
   import {Tool} from "@/util/tool";
   import {useRoute} from "vue-router";
+  import { Modal } from 'ant-design-vue';
+  import { createVNode} from 'vue';
+  import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 
   export default defineComponent({
     name: 'AdminDoc',
@@ -222,7 +213,8 @@
       }
 
 
-      const ids: Array<string> = [];
+      const deleteIds: Array<string> = [];
+      const deleteNames: Array<string> = [];
       /**
        * 查找整根树枝
        */
@@ -235,7 +227,8 @@
             console.log("disabled", node);
 
             //将目标id放入结果集ids
-            ids.push(id);
+            deleteIds.push(id);
+            deleteNames.push(node.name);
 
             //遍历所有子节点
             const children = node.children;
@@ -285,19 +278,36 @@
         treeSelectData.value.unshift({id: 0, name: "无"});
       };
 
+
       /**
        * 删除
        */
       const handleDelete = (id: number) => {
+        deleteNames.length = 0;
+        deleteIds.length = 0;
         getDeleteIds(level1.value,id);
-        axios.delete("/doc/delete/" + ids.join(",")).then((response) => {
-          const data = response.data; //data = CommonResp
-          if (data.success){
-            message.success('删除成功！');
-            //重新加载列表
-            handleQuery();
-          }
+
+        Modal.confirm({
+          title: '你确定要删除 【' + deleteNames.join(",") +'】 吗？',
+          icon: createVNode(ExclamationCircleOutlined),
+          content: '删除之后不可恢复',
+          okText: '确定',
+          cancelText: '取消',
+          onOk() {
+            axios.delete("/doc/delete/" + deleteIds.join(",")).then((response) => {
+              const data = response.data; //data = CommonResp
+              if (data.success){
+                message.success('删除成功！');
+                //重新加载列表
+                handleQuery();
+              }
+            });
+          },
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
+          onCancel() {},
         });
+
+
       };
 
 
