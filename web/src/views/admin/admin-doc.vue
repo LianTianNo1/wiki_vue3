@@ -190,8 +190,8 @@ import E from 'wangeditor';
           modalLoading.value = false;
           const data = response.data; //data = CommonResp
           if (data.success){
-            modalVisible.value = false;
-            message.success('添加成功！');
+            // modalVisible.value = false;
+            message.success('保存成功！');
             //重新加载列表
             handleQuery();
           }else {
@@ -285,6 +285,8 @@ import E from 'wangeditor';
        * 编辑
        */
       const edit = (record: any) => {
+        //清空富文本框
+        editor.txt.html("");
         modalVisible.value = true;
         doc.value = Tool.copy(record);
         handleQueryContent();
@@ -301,6 +303,8 @@ import E from 'wangeditor';
        * 新增
        */
       const add = () => {
+        //清空富文本框
+        editor.txt.html("");
         modalVisible.value = true;
         doc.value = {
           ebookId: route.query.ebookId
