@@ -9,6 +9,7 @@
                         @select="onSelect"
                         :replaceFields="{title: 'name',key: 'id', value: 'id'}"
                         :defaultExpandAll="true"
+                        :defaultSelectedKeys="defaultSelectedKeys"
                     >
                     </a-tree>
                 </a-col>
@@ -35,6 +36,8 @@
             const route = useRoute();
             const docs = ref();
             const html = ref();
+            const defaultSelectedKeys = ref();
+            defaultSelectedKeys.value = [];
 
             /**
              *一级文档树，children属性就是二级文档
@@ -51,26 +54,6 @@
             const level1 = ref();
             level1.value = [];
 
-
-            /**
-             * 数据查询
-             */
-            const handleQuery = () => {
-                axios.get("/doc/all/" + route.query.ebookId).then((response) => {
-                    const data = response.data;
-                    if (data.success){
-                        docs.value = data.content;
-                        console.log("原始数组: ",docs.value);
-
-                        level1.value = [];
-                        level1.value = Tool.array2Tree(docs.value,0);
-                        console.log("树形结构: ",level1);
-                    }else {
-                        message.error(data.message);
-                    }
-                });
-            };
-
             /**
              * 内容查询
              */
@@ -84,6 +67,31 @@
                     }
                 });
             };
+
+
+
+            /**
+             * 数据查询
+             */
+            const handleQuery = () => {
+                axios.get("/doc/all/" + route.query.ebookId).then((response) => {
+                    const data = response.data;
+                    if (data.success){
+                        docs.value = data.content;
+
+                        level1.value = [];
+                        level1.value = Tool.array2Tree(docs.value,0);
+
+                        if (Tool.isNotEmpty(level1)){
+                            defaultSelectedKeys.value = [level1.value[0].id];
+                            handleQueryContent(level1.value[0].id);
+                        }
+                    }else {
+                        message.error(data.message);
+                    }
+                });
+            };
+
 
             const onSelect = (selectedKeys: any, info: any) => {
                 console.log('selected',selectedKeys,info);
@@ -102,7 +110,8 @@
             return {
                 level1,
                 html,
-                onSelect
+                onSelect,
+                defaultSelectedKeys,
             }
         }
     });
