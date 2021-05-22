@@ -8,6 +8,7 @@ import com.wzy.wiki.exception.BusinessException;
 import com.wzy.wiki.exception.BusinessExceptionCode;
 import com.wzy.wiki.mapper.UserMapper;
 import com.wzy.wiki.req.UserQueryReq;
+import com.wzy.wiki.req.UserResetPasswordReq;
 import com.wzy.wiki.req.UserSaveReq;
 import com.wzy.wiki.resp.PageResp;
 import com.wzy.wiki.resp.UserQueryResp;
@@ -85,6 +86,7 @@ public class UserService {
         }else {
             //更新
             user.setLoginName(null);
+            user.setPassword(null);
             userMapper.updateByPrimaryKeySelective(user);
         }
     }
@@ -106,5 +108,13 @@ public class UserService {
         } else {
             return userList.get(0);
         }
+    }
+
+    /**
+     * 修改用户密码
+     */
+    public void resetPassword(UserResetPasswordReq req){
+        User user = CopyUtil.copy(req,User.class);
+        userMapper.updateByPrimaryKeySelective(user);
     }
 }

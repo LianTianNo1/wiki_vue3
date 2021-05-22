@@ -1,10 +1,11 @@
 package com.wzy.wiki.controller;
 
 import com.wzy.wiki.req.UserQueryReq;
+import com.wzy.wiki.req.UserResetPasswordReq;
 import com.wzy.wiki.req.UserSaveReq;
 import com.wzy.wiki.resp.CommonResp;
-import com.wzy.wiki.resp.UserQueryResp;
 import com.wzy.wiki.resp.PageResp;
+import com.wzy.wiki.resp.UserQueryResp;
 import com.wzy.wiki.service.UserService;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +42,15 @@ public class UserController {
     public CommonResp delete(@PathVariable Long id){
         CommonResp resp = new CommonResp<>();
         userService.delete(id);
+        return resp;
+    }
+
+    // 更改用户密码
+    @PostMapping("/reset-password")
+    public CommonResp resetPassword(@Valid @RequestBody UserResetPasswordReq req){
+        req.setPassword(DigestUtils.md5DigestAsHex(req.getPassword().getBytes()));
+        CommonResp resp = new CommonResp();
+        userService.resetPassword(req);
         return resp;
     }
 }
