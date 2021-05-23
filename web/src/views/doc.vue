@@ -15,6 +15,14 @@
                     </a-tree>
                 </a-col>
                 <a-col :span="18">
+                    <div>
+                        <h2>{{doc.name}}</h2>
+                        <div>
+                            <span>阅读数: {{doc.viewCount}}</span>&nbsp;&nbsp;
+                            <span>点赞数: {{doc.voteCount}}</span>
+                        </div>
+                        <a-divider style="height: 2px; background-color: #9999cc" />
+                    </div>
                     <div class="wangeditor" :innerHTML="html"></div>
                 </a-col>
             </a-row>
@@ -39,6 +47,9 @@
             const html = ref();
             const defaultSelectedKeys = ref();
             defaultSelectedKeys.value = [];
+            // 当前选中的文档
+            const doc = ref();
+            doc.value = {};
 
             /**
              *一级文档树，children属性就是二级文档
@@ -86,6 +97,8 @@
                         if (Tool.isNotEmpty(level1)){
                             defaultSelectedKeys.value = [level1.value[0].id];
                             handleQueryContent(level1.value[0].id);
+                            // 初始显示文档信息
+                            doc.value = level1.value[0];
                         }
                     }else {
                         message.error(data.message);
@@ -97,6 +110,8 @@
             const onSelect = (selectedKeys: any, info: any) => {
                 console.log('selected',selectedKeys,info);
                 if (Tool.isNotEmpty(selectedKeys)){
+                    // 选中某一节点时，加载该节点的文档信息
+                    doc.value = info.selectedNodes[0].props;
                     //加载内容
                     handleQueryContent(selectedKeys[0]);
                 }
@@ -113,6 +128,7 @@
                 html,
                 onSelect,
                 defaultSelectedKeys,
+                doc
             }
         }
     });
