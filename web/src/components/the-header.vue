@@ -27,7 +27,7 @@
         </a-menu>
         <a-modal
                 title="登录"
-                v-modal:visible="loginModalVisible"
+                v-model:visible="loginModalVisible"
                 :confirm-loading="loginModalLoading"
                 @ok="login"
         >
@@ -45,6 +45,11 @@
 
 <script lang="ts">
     import { defineComponent, ref } from 'vue';
+    import axios from 'axios';
+    import { message } from "ant-design-vue";
+
+    declare let hexMd5: any;
+    declare let KEY: any;
 
     export default defineComponent({
         name: 'the-header',
@@ -62,7 +67,19 @@
             // 开始登录
             const login = () => {
                 console.log("开始登录");
-            }
+                loginModalLoading.value = true;
+                loginUser.value.password = hexMd5(loginUser.value.password + KEY);
+                axios.post('/user/login', loginUser.value).then((response) => {
+                    loginModalLoading.value = false;
+                    const data = response.data;
+                    if (data.success) {
+                        loginModalVisible.value = false;
+                        message.success("登录成功!")
+                    } else {
+                        message.error(data.message);
+                    }
+                });
+            };
 
             return {
                 loginModalVisible,
