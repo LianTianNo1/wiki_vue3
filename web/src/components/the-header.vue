@@ -21,7 +21,10 @@
             <a-menu-item key="About">
                 <router-link to="/about">关于我们</router-link>
             </a-menu-item>
-            <a class="login-menu" @click="showLoginModal">
+            <a class="login-menu" v-show="user.id">
+                <span>你好: {{user.name}}</span>
+            </a>
+            <a class="login-menu" v-show="!user.id" @click="showLoginModal">
                 <span>登录</span>
             </a>
         </a-menu>
@@ -54,6 +57,11 @@
     export default defineComponent({
         name: 'the-header',
         setup () {
+            // 登录后保存
+            const user = ref();
+            user.value = {};
+
+            // 登录
             const loginUser = ref({
                loginName: "test",
                 password: "test"
@@ -74,7 +82,8 @@
                     const data = response.data;
                     if (data.success) {
                         loginModalVisible.value = false;
-                        message.success("登录成功!")
+                        message.success("登录成功!");
+                        user.value = data.content;
                     } else {
                         message.error(data.message);
                     }
@@ -86,7 +95,8 @@
                 loginModalLoading,
                 showLoginModal,
                 loginUser,
-                login
+                login,
+                user
             }
         }
     });
