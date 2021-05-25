@@ -81,7 +81,7 @@ export class Tool {
    * @param radix 默认62
    * @returns {string}
    */
-  /*public static uuid (len: number, radix = 62) {
+  public static uuid (len: number, radix = 62) {
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
     const uuid = [];
     radix = radix || chars.length;
@@ -91,5 +91,5 @@ export class Tool {
     }
 
     return uuid.join('');
-  }*/
+  }
 }
