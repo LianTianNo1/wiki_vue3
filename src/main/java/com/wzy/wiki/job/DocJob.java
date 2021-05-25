@@ -1,9 +1,11 @@
 package com.wzy.wiki.job;
 
  import com.wzy.wiki.service.DocService;
-import org.slf4j.Logger;
+ import com.wzy.wiki.util.SnowFlake;
+ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
+ import org.slf4j.MDC;
+ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -14,6 +16,9 @@ import javax.annotation.Resource;
     private static final Logger LOG = LoggerFactory.getLogger(DocJob.class);
 
     @Resource
+    private SnowFlake snowFlake;
+
+    @Resource
     private DocService docService;
 
     /**
@@ -21,6 +26,9 @@ import javax.annotation.Resource;
      */
     @Scheduled(cron = "5/30 * * * * ?")
     public void cron() {
+        // 增加日志流水号
+        MDC.put("LOG_ID", String.valueOf(snowFlake.nextId()));
+
         LOG.info("开始更新电子书下的文档数据");
         long start = System.currentTimeMillis();
         docService.updateEbookInfo();
