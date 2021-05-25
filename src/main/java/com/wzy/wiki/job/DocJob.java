@@ -21,7 +21,10 @@ import javax.annotation.Resource;
      */
     @Scheduled(cron = "5/30 * * * * ?")
     public void cron() {
+        LOG.info("开始更新电子书下的文档数据");
+        long start = System.currentTimeMillis();
         docService.updateEbookInfo();
+        LOG.info("文档数据更新结束, 耗时: {}毫秒",System.currentTimeMillis() - start);
     }
 
  }
