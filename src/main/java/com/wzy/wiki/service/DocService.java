@@ -18,10 +18,9 @@ import com.wzy.wiki.util.CopyUtil;
 import com.wzy.wiki.util.RedisUtil;
 import com.wzy.wiki.util.RequestContext;
 import com.wzy.wiki.util.SnowFlake;
-import com.wzy.wiki.websocket.WebSocketServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Async;
+import org.slf4j.MDC;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -162,7 +161,8 @@ public class DocService {
 
         // 推送消息
         Doc docDb = docMapper.selectByPrimaryKey(id);
-        wsService.sendInfo("【" + docDb.getName() + "】此刻被赞了一下");
+        String logId = MDC.get("LOG_ID");
+        wsService.sendInfo("【" + docDb.getName() + "】此刻被赞了一下", logId);
     }
 
 
