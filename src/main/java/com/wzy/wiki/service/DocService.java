@@ -52,6 +52,9 @@ public class DocService {
     @Resource
     public WsService wsService;
 
+/*    @Resource
+    private RocketMQTemplate rocketMQTemplate;*/
+
     public List<DocQueryResp> all(Long ebookId){
         DocExample docExample = new DocExample();
         docExample.createCriteria().andEbookIdEqualTo(ebookId);
@@ -155,7 +158,7 @@ public class DocService {
 
         //远程IP+doc.id作为key, 24小时内不能重复
         String ip = RequestContext.getRemoteAddr();
-        if (redisUtil.validateRepeat("DOC_VOTE_" + id + "_" + ip, 3600 * 24)) {
+        if (redisUtil.validateRepeat("DOC_VOTE_" + id + "_" + ip, 5)) {
             docMapperCust.increaseVoteCount(id);
         } else {
             throw new BusinessException(BusinessExceptionCode.VOTE_REPEAT);
@@ -165,7 +168,9 @@ public class DocService {
         Doc docDb = docMapper.selectByPrimaryKey(id);
         String logId = MDC.get("LOG_ID");
         wsService.sendInfo("【" + docDb.getName() + "】此刻被赞了一下", logId);
+//        rocketMQTemplate.convertAndSend("VOTE_TOPIC", "【" + docDb.getName() + "】此刻被赞了一下");
     }
+
 
 
 
