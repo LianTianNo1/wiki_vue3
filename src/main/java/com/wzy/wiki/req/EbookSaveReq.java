@@ -10,6 +10,7 @@ public class EbookSaveReq {
 
     private Long category1Id;
 
+    @NotNull(message = "【目录】不能为空")
     private Long category2Id;
 
     private String description;

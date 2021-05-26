@@ -73,7 +73,7 @@ public class EbookService {
         if (ObjectUtils.isEmpty(req.getId())){
             //新增
             ebook.setId(snowFlake.nextId());
-            ebookMapper.insert(ebook);
+            ebookMapper.insertSelective(ebook);
         }else {
             //更新
             ebookMapper.updateByPrimaryKey(ebook);

@@ -180,9 +180,9 @@ import E from 'wangeditor';
           console.log("树形结构: ",level1);
 
           //父文档下拉框初始化，相当于点击新增
-          treeSelectData.value = Tool.copy(level1.value);
+          treeSelectData.value = Tool.copy(level1.value) || [];
           // 为选择树添加一个 “无” 字
-            treeSelectData.value.unshift({id: 0, name: '无'});
+          treeSelectData.value.unshift({id: 0, name: '无'});
           }else {
             message.error(data.message);
           }
@@ -326,7 +326,7 @@ import E from 'wangeditor';
           ebookId: route.query.ebookId
         };
 
-        treeSelectData.value = Tool.copy(level1.value);
+        treeSelectData.value = Tool.copy(level1.value) || [];
 
         //为选择树添加一个 "无" 字
         treeSelectData.value.unshift({id: 0, name: "无"});
