@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzy.wiki.mapper.EbookSnapshotMapper">
+  <resultMap id="BaseResultMap" type="com.wzy.wiki.domain.EbookSnapshot">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="ebook_id" jdbcType="BIGINT" property="ebookId" />
+    <result column="date" jdbcType="DATE" property="date" />
+    <result column="view_count" jdbcType="INTEGER" property="viewCount" />
+    <result column="vote_count" jdbcType="INTEGER" property="voteCount" />
+    <result column="view_increase" jdbcType="INTEGER" property="viewIncrease" />
+    <result column="vote_increase" jdbcType="INTEGER" property="voteIncrease" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, ebook_id, `date`, view_count, vote_count, view_increase, vote_increase
+  </sql>
+  <select id="selectByExample" parameterType="com.wzy.wiki.domain.EbookSnapshotExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ebook_snapshot
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ebook_snapshot
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ebook_snapshot
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wzy.wiki.domain.EbookSnapshotExample">
+    delete from ebook_snapshot
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wzy.wiki.domain.EbookSnapshot">
+    insert into ebook_snapshot (id, ebook_id, `date`, 
+      view_count, vote_count, view_increase, 
+      vote_increase)
+    values (#{id,jdbcType=BIGINT}, #{ebookId,jdbcType=BIGINT}, #{date,jdbcType=DATE}, 
+      #{viewCount,jdbcType=INTEGER}, #{voteCount,jdbcType=INTEGER}, #{viewIncrease,jdbcType=INTEGER}, 
+      #{voteIncrease,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzy.wiki.domain.EbookSnapshot">
+    insert into ebook_snapshot
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ebookId != null">
+        ebook_id,
+      </if>
+      <if test="date != null">
+        `date`,
+      </if>
+      <if test="viewCount != null">
+        view_count,
+      </if>
+      <if test="voteCount != null">
+        vote_count,
+      </if>
+      <if test="viewIncrease != null">
+        view_increase,
+      </if>
+      <if test="voteIncrease != null">
+        vote_increase,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="ebookId != null">
+        #{ebookId,jdbcType=BIGINT},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="viewCount != null">
+        #{viewCount,jdbcType=INTEGER},
+      </if>
+      <if test="voteCount != null">
+        #{voteCount,jdbcType=INTEGER},
+      </if>
+      <if test="viewIncrease != null">
+        #{viewIncrease,jdbcType=INTEGER},
+      </if>
+      <if test="voteIncrease != null">
+        #{voteIncrease,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wzy.wiki.domain.EbookSnapshotExample" resultType="java.lang.Long">
+    select count(*) from ebook_snapshot
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ebook_snapshot
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ebookId != null">
+        ebook_id = #{record.ebookId,jdbcType=BIGINT},
+      </if>
+      <if test="record.date != null">
+        `date` = #{record.date,jdbcType=DATE},
+      </if>
+      <if test="record.viewCount != null">
+        view_count = #{record.viewCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.voteCount != null">
+        vote_count = #{record.voteCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.viewIncrease != null">
+        view_increase = #{record.viewIncrease,jdbcType=INTEGER},
+      </if>
+      <if test="record.voteIncrease != null">
+        vote_increase = #{record.voteIncrease,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ebook_snapshot
+    set id = #{record.id,jdbcType=BIGINT},
+      ebook_id = #{record.ebookId,jdbcType=BIGINT},
+      `date` = #{record.date,jdbcType=DATE},
+      view_count = #{record.viewCount,jdbcType=INTEGER},
+      vote_count = #{record.voteCount,jdbcType=INTEGER},
+      view_increase = #{record.viewIncrease,jdbcType=INTEGER},
+      vote_increase = #{record.voteIncrease,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzy.wiki.domain.EbookSnapshot">
+    update ebook_snapshot
+    <set>
+      <if test="ebookId != null">
+        ebook_id = #{ebookId,jdbcType=BIGINT},
+      </if>
+      <if test="date != null">
+        `date` = #{date,jdbcType=DATE},
+      </if>
+      <if test="viewCount != null">
+        view_count = #{viewCount,jdbcType=INTEGER},
+      </if>
+      <if test="voteCount != null">
+        vote_count = #{voteCount,jdbcType=INTEGER},
+      </if>
+      <if test="viewIncrease != null">
+        view_increase = #{viewIncrease,jdbcType=INTEGER},
+      </if>
+      <if test="voteIncrease != null">
+        vote_increase = #{voteIncrease,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzy.wiki.domain.EbookSnapshot">
+    update ebook_snapshot
+    set ebook_id = #{ebookId,jdbcType=BIGINT},
+      `date` = #{date,jdbcType=DATE},
+      view_count = #{viewCount,jdbcType=INTEGER},
+      vote_count = #{voteCount,jdbcType=INTEGER},
+      view_increase = #{viewIncrease,jdbcType=INTEGER},
+      vote_increase = #{voteIncrease,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
