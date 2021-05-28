@@ -56,6 +56,7 @@ public class DocController {
     public CommonResp findContent(@PathVariable Long id){
         CommonResp<String> resp = new CommonResp<>();
         String content = docService.findContent(id);
+        System.out.println(content);
         resp.setContent(content);
         return resp;
     }

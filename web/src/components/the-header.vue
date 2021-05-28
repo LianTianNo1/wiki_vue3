@@ -1,6 +1,6 @@
 <template>
     <a-layout-header class="header">
-        <div class="logo" />
+        <div class="logo" >wzy知识库</div>
         <a-menu
                 theme="dark"
                 mode="horizontal"
@@ -128,6 +128,13 @@
 </script>
 
 <style>
+    .logo {
+        width: 120px;
+        height: 31px;
+        float: left;
+        color: white;
+        font-size: 18px;
+    }
     .login-menu{
         float: right;
         color: white;

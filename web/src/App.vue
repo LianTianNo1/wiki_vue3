@@ -20,7 +20,7 @@
   });
 </script>
 
-<style>
+<!--<style>
   .header .logo {
     float: left;
     width: 120px;
@@ -37,5 +37,5 @@
   .site-layout-background {
     background: #fff;
   }
-</style>
+</style>-->
 
