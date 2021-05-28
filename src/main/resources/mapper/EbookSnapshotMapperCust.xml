@@ -55,7 +55,7 @@
             t1.`date` asc;
     </select>
 
-    <!--<select id="get30Statistic" resultType="com.jiawa.wiki.resp.StatisticResp">
+    <select id="get30Statistic" resultType="com.wzy.wiki.resp.StatisticResp">
         select
             t1.`date` as `date`,
             sum(t1.view_increase) as viewIncrease,
@@ -68,6 +68,6 @@
             t1.`date`
         order by
             t1.`date` asc;
-    </select>-->
+    </select>
 
 </mapper>
