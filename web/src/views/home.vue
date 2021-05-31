@@ -7,18 +7,18 @@
               @click="handleClick"
       >
         <a-menu-item key="welcome">
-            <MailOutlined/>
-            <span>欢迎</span>
+            <HomeOutlined />
+            <span>&nbsp;欢迎</span>
         </a-menu-item>
         <a-sub-menu v-for="item in level1" :key="item.id">
           <template v-slot:title>
                 <span>
-                  <user-outlined />
+                  <BookOutlined />
                   {{item.name}}
                 </span>
           </template>
           <a-menu-item v-for="child in item.children" :key="child.id">
-            <MailOutlined/>
+            <ReadOutlined />
             <span>
               {{child.name}}
             </span>

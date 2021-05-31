@@ -1,10 +1,16 @@
 <template>
     <a-layout-header class="header">
-        <div class="logo" >wzy知识库</div>
+        <div class="logo" >
+            <a href="/" style="color: white">
+                <img class="re_img" src="@/assets/logo.png" style="width: 60px; height: 60px;">
+                王志颖のwiki
+            </a>
+        </div>
         <a-menu
                 theme="dark"
                 mode="horizontal"
-                :style="{ lineHeight: '64px' }"
+                :style="{ lineHeight: '64px'}"
+                class="re_menu"
         >
             <a-menu-item key="Home">
                 <router-link to="/">首页</router-link>
@@ -46,10 +52,10 @@
         >
             <a-form :model="loginUser" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
                 <a-form-item label="登录名">
-                    <a-input v-model:value="loginUser.loginName" />
+                    <a-input v-model:value="loginName" />
                 </a-form-item>
                 <a-form-item label="密码">
-                    <a-input v-model:value="loginUser.password" type="password" />
+                    <a-input v-model:value="password" type="password" />
                 </a-form-item>
             </a-form>
         </a-modal>
@@ -73,9 +79,11 @@
 
             // 登录
             const loginUser = ref({
-               loginName: "test",
-                password: "test"
+               loginName: "",
+                password: ""
             });
+            const loginName = ref("");
+            const password = ref("");
             const loginModalVisible = ref(false);
             const loginModalLoading = ref(false);
             const showLoginModal = () => {
@@ -86,7 +94,8 @@
             const login = () => {
                 console.log("开始登录");
                 loginModalLoading.value = true;
-                loginUser.value.password = hexMd5(loginUser.value.password + KEY);
+                loginUser.value.loginName = loginName.value;
+                loginUser.value.password = hexMd5(password.value + KEY);
                 axios.post('/user/login', loginUser.value).then((response) => {
                     loginModalLoading.value = false;
                     const data = response.data;
@@ -108,6 +117,8 @@
                     if (data.success) {
                         message.success("成功退出!");
                         store.commit("setUser", {});
+                        loginName.value = "";
+                        password.value = "";
                     } else {
                         message.error(data.message);
                     }
@@ -121,16 +132,28 @@
                 loginUser,
                 login,
                 user,
-                logout
+                logout,
+                loginName,
+                password
             }
         }
     });
 </script>
 
 <style>
+    .re_img {
+        /*border: #000 solid 2px;*/
+        /*display: block;*/
+        /*margin: 50px auto;*/
+        /*border-radius: 50%;*/
+        transition: all 2.0s;
+    }
+    .re_img:hover{
+        transform: rotate(360deg);
+    }
     .logo {
-        width: 120px;
-        height: 31px;
+        width: 180px;
+        height: 64px;
         float: left;
         color: white;
         font-size: 18px;

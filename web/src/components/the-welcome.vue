@@ -159,9 +159,13 @@
                         containLabel: true
                     },
                     toolbox: {
+
                         feature: {
-                            saveAsImage: {}
-                        }
+                            saveAsImage: {
+                                title: '下载图表',
+                            },
+                        },
+                        right : '2%',
                     },
                     xAxis: {
                         type: 'category',
