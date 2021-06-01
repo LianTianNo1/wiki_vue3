@@ -101,7 +101,6 @@
     import axios from 'axios';
 
     declare let echarts: any;
-
     export default defineComponent({
         name: 'the-welcome',
         setup () {
@@ -128,9 +127,11 @@
             };
 
             const init30DayEcharts = (list: any) => {
-                // 基于准备好的dom，初始化Echarts实例
-                const myChart = echarts.init(document.getElementById('main'));
+                echarts.dispose(document.getElementById('main'));
 
+                // 基于准备好的dom，初始化Echarts实例
+                var myChart;
+                myChart = echarts.init(document.getElementById('main'));
                 const xAxis = [];
                 const seriesView = [];
                 const seriesVote = [];
@@ -199,7 +200,6 @@
                     const data = response.data;
                     if (data.success) {
                         const statisticList = data.content;
-
                         init30DayEcharts(statisticList);
                     }
                 });
