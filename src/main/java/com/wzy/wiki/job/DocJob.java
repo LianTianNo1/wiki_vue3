@@ -24,7 +24,7 @@ import javax.annotation.Resource;
     /**
      * 每30秒更新电子书信息
      */
-    @Scheduled(cron = "5/30 * * * * ?")
+    @Scheduled(cron = "3/9 * * * * ? ")
     public void cron() {
         // 增加日志流水号
         MDC.put("LOG_ID", String.valueOf(snowFlake.nextId()));

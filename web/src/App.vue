@@ -2,7 +2,7 @@
   <a-layout>
     <the-header></the-header>
      <router-view/>
-    <the-footer></the-footer>
+    <the-footer v-if="$route.path!=='/doc'" v-show="$route.path!=='/admin/doc'"></the-footer>
   </a-layout>
 </template>
 

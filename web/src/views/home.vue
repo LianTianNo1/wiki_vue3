@@ -1,9 +1,10 @@
 <template>
   <a-layout>
-    <a-layout-sider width="200" style="background: #fff">
+    <a-layout-sider width="210" style="background: #fff;"
+                    :style="{ overflow: 'auto', height: '87vh', left: 0 }">
       <a-menu
               mode="inline"
-              :style="{ height: '100%', borderRight: 0 }"
+              :style="{ height: '90%', borderRight: 0 }"
               @click="handleClick"
       >
         <a-menu-item key="welcome">

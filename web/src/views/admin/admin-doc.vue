@@ -4,7 +4,7 @@
             :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
     >
       <a-row :gutter="24">
-        <a-col :span="8">
+        <a-col :span="7">
           <p>
             <a-form layout="inline" :model="param">
               <a-form-item>
@@ -29,8 +29,18 @@
                   size="small"
                   :defaultExpandAllRows="true"
           >
-            <template #name="{ text, record }">
-              {{record.sort}} {{text}}
+            <template #name="{text}">
+              {{text}}
+            </template>
+            <template #sort="{record }">
+              <span>
+                <a-tag
+                        :key="tag"
+                        :color="'#80A2B4'"
+                >
+                  {{record.sort}}
+                </a-tag>
+              </span>
             </template>
             <template v-slot:action="{ text, record }">
               <a-space size="small">
@@ -51,7 +61,7 @@
             </template>
           </a-table>
         </a-col>
-        <a-col :span="16">
+        <a-col :span="17">
           <p>
             <a-form layout="inline" :model="param">
               <a-form-item>
@@ -61,14 +71,14 @@
               </a-form-item>
             </a-form>
           </p>
-          <a-form :model="doc" layout="vertical">
-            <a-form-item>
-              <a-input v-model:value="doc.name" placeholder="名称"/>
+          <a-form :model="doc" layout="inline">
+            <a-form-item label="名称">
+              <a-input  v-model:value="doc.name" placeholder="名称"/>
             </a-form-item>
-            <a-form-item>
+            <a-form-item label="父文档">
               <a-tree-select
                       v-model:value="doc.parent"
-                      style="width: 100%"
+                      style="width: 150px"
                       :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
                       :tree-data="treeSelectData"
                       placeholder="请选择父文档"
@@ -77,9 +87,11 @@
               >
               </a-tree-select>
             </a-form-item>
-            <a-form-item>
+            <a-form-item label="顺序">
               <a-input v-model:value="doc.sort" placeholder="顺序"/>
             </a-form-item>
+            <br/>
+            <br/>
             <a-form-item>
               <a-button type="primary" @click="handlePreviewContent()">
                 <EyeOutlined /> 内容预览
@@ -142,6 +154,11 @@
           title: '名称',
           dataIndex: 'name',
           slots: { customRender: 'name' }
+        },
+        {
+          title: '顺序',
+          dataIndex: 'sort',
+          slots: { customRender: 'sort' }
         },
         {
           title: 'Action',
