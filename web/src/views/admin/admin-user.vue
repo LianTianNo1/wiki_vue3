@@ -164,12 +164,25 @@
        * 表格点击页码时触发
        */
       const handleTableChange = (pagination: any) => {
-        console.log("看看自带的分页参数都有啥：" + pagination);
+        // console.log("看看自带的分页参数都有啥：" + pagination);
         handleQuery({
           page: pagination.current,
           size: pagination.pageSize
         });
       };
+
+      // 校验密码
+      const validatePassword = (str: any) => {
+          var reg = /^[A-Za-z0-9]{6,32}$/;
+          if(!reg.test(str)) {
+            return false;
+          } else {
+            if (str == null || str == ""){
+              return false;
+            }
+            return true;
+          }
+      }
 
       // -------- 表单 ---------
       const user = ref();
@@ -178,23 +191,28 @@
       const handleModalOk = () => {
         modalLoading.value = true;
 
-        user.value.password = hexMd5(user.value.password + KEY);
+        if (validatePassword(user.value.password)) {
+          user.value.password = hexMd5(user.value.password + KEY);
 
-        axios.post("/user/save", user.value).then((response) => {
+          axios.post("/user/save", user.value).then((response) => {
+            modalLoading.value = false;
+            const data = response.data; // data = commonResp
+            if (data.success) {
+              modalVisible.value = false;
+
+              // 重新加载列表
+              handleQuery({
+                page: pagination.value.current,
+                size: pagination.value.pageSize,
+              });
+            } else {
+              message.error(data.message);
+            }
+          });
+        } else {
+          message.error("请输入6~32位由字母或数字组成的密码");
           modalLoading.value = false;
-          const data = response.data; // data = commonResp
-          if (data.success) {
-            modalVisible.value = false;
-
-            // 重新加载列表
-            handleQuery({
-              page: pagination.value.current,
-              size: pagination.value.pageSize,
-            });
-          } else {
-            message.error(data.message);
-          }
-        });
+        }
       };
 
       /**
@@ -233,24 +251,30 @@
       const resetModalLoading = ref(false);
       const handleResetModalOk = () => {
         resetModalLoading.value = true;
+        if (validatePassword(user.value.password)) {
 
-        user.value.password = hexMd5(user.value.password + KEY);
+          user.value.password = hexMd5(user.value.password + KEY);
 
-        axios.post("/user/reset-password", user.value).then((response) => {
+          axios.post("/user/reset-password", user.value).then((response) => {
+            resetModalLoading.value = false;
+            const data = response.data; // data = commonResp
+            if (data.success) {
+              resetModalVisible.value = false;
+
+              // 重新加载列表
+              handleQuery({
+                page: pagination.value.current,
+                size: pagination.value.pageSize,
+              });
+            } else {
+              message.error(data.message);
+            }
+          });
+        } else {
+          message.error("请输入6~32位由字母或数字组成的密码");
           resetModalLoading.value = false;
-          const data = response.data; // data = commonResp
-          if (data.success) {
-            resetModalVisible.value = false;
+        }
 
-            // 重新加载列表
-            handleQuery({
-              page: pagination.value.current,
-              size: pagination.value.pageSize,
-            });
-          } else {
-            message.error(data.message);
-          }
-        });
       };
 
       /**
