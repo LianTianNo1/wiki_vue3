@@ -129,6 +129,8 @@
   import {useRoute} from "vue-router";
   import ExclamationCircleOutlined from "@ant-design/icons-vue/ExclamationCircleOutlined";
   import E from 'wangeditor'
+  import hljs from 'highlight.js'
+  import 'highlight.js/styles/github.css'
 
   export default defineComponent({
     name: 'AdminDoc',
@@ -217,6 +219,8 @@
       const modalVisible = ref(false);
       const modalLoading = ref(false);
       const editor = new E('#content');
+      // 挂载highlight插件
+      editor.highlight = hljs
       editor.config.zIndex = 0;
 
       const handleSave = () => {
