@@ -66,8 +66,10 @@
     v-model:visible="modalVisible"
     :confirm-loading="modalLoading"
     @ok="handleModalOk"
+    okText="确定"
+    cancelText="取消"
   >
-    <a-form :model="ebook" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
+    <a-form :model="ebook" :label-col="{ span: 5 }" :wrapper-col="{ span: 17 }">
       <a-form-item label="封面">
         <a-input v-model:value="ebook.cover"/>
       </a-form-item>

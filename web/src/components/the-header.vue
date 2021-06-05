@@ -49,13 +49,15 @@
                 v-model:visible="loginModalVisible"
                 :confirm-loading="loginModalLoading"
                 @ok="login"
+                okText="确定"
+                cancelText="取消"
         >
-            <a-form :model="loginUser" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
-                <a-form-item label="登录名">
-                    <a-input v-model:value="loginName" />
+            <a-form :model="loginUser" :label-col="{ span: 4 }" :wrapper-col="{ span: 19 }">
+                <a-form-item label="用户名">
+                    <a-input v-model:value="loginName" placeholder="请输入用户名" />
                 </a-form-item>
                 <a-form-item label="密码">
-                    <a-input v-model:value="password" type="password" />
+                    <a-input v-model:value="password" type="password" placeholder="请输入密码"/>
                 </a-form-item>
             </a-form>
         </a-modal>

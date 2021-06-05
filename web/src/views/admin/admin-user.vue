@@ -6,7 +6,7 @@
       <p>
         <a-form layout="inline" :model="param">
           <a-form-item>
-            <a-input v-model:value="param.loginName" placeholder="登陆名">
+            <a-input v-model:value="param.loginName" placeholder="用户名">
             </a-input>
           </a-form-item>
           <a-form-item>
@@ -58,16 +58,18 @@
           v-model:visible="modalVisible"
           :confirm-loading="modalLoading"
           @ok="handleModalOk"
+          okText="确定"
+          cancelText="取消"
   >
-    <a-form :model="user" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
-      <a-form-item label="登陆名">
-        <a-input v-model:value="user.loginName" :disabled="!!user.id"/>
+    <a-form :model="user" :label-col="{ span: 5 }" :wrapper-col="{ span: 18 }">
+      <a-form-item label="用户名">
+        <a-input v-model:value="user.loginName" :disabled="!!user.id" placeholder="请输入用户名"/>
       </a-form-item>
       <a-form-item label="昵称">
-        <a-input v-model:value="user.name" />
+        <a-input v-model:value="user.name" placeholder="请输入昵称" />
       </a-form-item>
       <a-form-item label="密码" v-show="!user.id">
-        <a-input v-model:value="user.password"/>
+        <a-input v-model:value="user.password" placeholder="请输入密码"/>
       </a-form-item>
     </a-form>
   </a-modal>
@@ -77,10 +79,12 @@
           v-model:visible="resetModalVisible"
           :confirm-loading="resetModalLoading"
           @ok="handleResetModalOk"
+          okText="确定"
+          cancelText="取消"
   >
-    <a-form :model="user" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
+    <a-form :model="user" :label-col="{ span: 4 }" :wrapper-col="{ span: 18 }">
       <a-form-item label="新密码">
-        <a-input v-model:value="user.password"/>
+        <a-input v-model:value="user.password" placeholder="请输入新密码"/>
       </a-form-item>
     </a-form>
   </a-modal>
