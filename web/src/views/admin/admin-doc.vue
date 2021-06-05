@@ -403,6 +403,8 @@
         handleQuery();
 
         editor.create();
+
+        add();
       });
 
       return {
