@@ -3,10 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/antd.css';
+// import 'ant-design-vue/dist/antd.css';
+// import 'ant-design-vue/dist/antd.less';
 import * as Icons from '@ant-design/icons-vue';
 import axios from 'axios';
 import {Tool} from "@/util/tool";
+import '../public/reset.less'
 
 
 axios.defaults.baseURL = process.env.VUE_APP_SERVER;

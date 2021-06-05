@@ -93,7 +93,11 @@
             <br/>
             <br/>
             <a-form-item>
-              <a-button type="primary" @click="handlePreviewContent()">
+              <a-button
+                      style="background-color: #40A9FF;border-radius: 5px;"
+                      type="primary"
+                        @click="handlePreviewContent()"
+              >
                 <EyeOutlined /> 内容预览
               </a-button>
             </a-form-item>
