@@ -27,6 +27,19 @@
         <template #cover="{ text: cover }">
           <img v-if="cover" :src="cover" alt="avatar"/>
         </template>
+
+        <template #sort="{record }">
+              <span>
+                <a-tag
+                        :key="tag"
+                        :color="'geekblue'"
+                >
+                  {{record.sort}}
+                </a-tag>
+              </span>
+        </template>
+
+
         <template v-slot:action="{ text, record }">
           <a-space size="small">
             <a-button type="primary" @click="edit(record)">
@@ -107,7 +120,8 @@
         },
         {
           title: '顺序',
-          dataIndex: 'sort'
+          dataIndex: 'sort',
+          slots: { customRender: 'sort' }
         },
         {
           title: 'Action',

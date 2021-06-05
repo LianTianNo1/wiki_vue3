@@ -31,6 +31,39 @@
         <template #cover="{ text: cover }">
           <img v-if="cover" :src="cover" alt="avatar"/>
         </template>
+
+        <template #docCount="{record }">
+              <span>
+                <a-tag
+                        :key="tag"
+                        :color="'geekblue'"
+                >
+                  {{record.docCount}}
+                </a-tag>
+              </span>
+        </template>
+        <template #viewCount="{record }">
+              <span>
+                <a-tag
+                        :key="tag"
+                        :color="'geekblue'"
+                >
+                  {{record.viewCount}}
+                </a-tag>
+              </span>
+        </template>
+        <template #voteCount="{record }">
+              <span>
+                <a-tag
+                        :key="tag"
+                        :color="'geekblue'"
+                >
+                  {{record.voteCount}}
+                </a-tag>
+              </span>
+        </template>
+
+
         <template v-slot:category="{ text,record }">
           <span>{{ getCategoryName(record.category1Id) }} / {{ getCategoryName(record.category2Id) }}</span>
         </template>
@@ -125,15 +158,18 @@
         },
         {
           title: '文档数',
-          dataIndex: 'docCount'
+          dataIndex: 'docCount',
+          slots: { customRender: 'docCount' },
         },
         {
           title: '阅读数',
-          dataIndex: 'viewCount'
+          dataIndex: 'viewCount',
+          slots: { customRender: 'viewCount' }
         },
         {
           title: '点赞数',
-          dataIndex: 'voteCount'
+          dataIndex: 'voteCount',
+          slots: { customRender: 'voteCount' }
         },
         {
           title: 'Action',
