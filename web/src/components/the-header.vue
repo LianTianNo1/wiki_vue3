@@ -127,6 +127,8 @@
                         store.commit("setUser", {});
                         loginName.value = "";
                         password.value = "";
+                        //退出登录后刷新页面跳回首页
+                        location.reload();
                     } else {
                         message.error(data.message);
                     }
