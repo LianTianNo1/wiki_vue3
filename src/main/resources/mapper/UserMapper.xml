@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wzy.wiki.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.wzy.wiki.domain.User">
+<mapper namespace="com.xiaolang.wiki.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.xiaolang.wiki.domain.User">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="login_name" jdbcType="VARCHAR" property="loginName" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List">
     id, login_name, `name`, `password`
   </sql>
-  <select id="selectByExample" parameterType="com.wzy.wiki.domain.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.xiaolang.wiki.domain.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -92,19 +92,19 @@
     delete from user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.wzy.wiki.domain.UserExample">
+  <delete id="deleteByExample" parameterType="com.xiaolang.wiki.domain.UserExample">
     delete from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.wzy.wiki.domain.User">
+  <insert id="insert" parameterType="com.xiaolang.wiki.domain.User">
     insert into user (id, login_name, `name`, 
       `password`)
     values (#{id,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{password,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.wzy.wiki.domain.User">
+  <insert id="insertSelective" parameterType="com.xiaolang.wiki.domain.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -135,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.wzy.wiki.domain.UserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.xiaolang.wiki.domain.UserExample" resultType="java.lang.Long">
     select count(*) from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -171,7 +171,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wzy.wiki.domain.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaolang.wiki.domain.User">
     update user
     <set>
       <if test="loginName != null">
@@ -186,7 +186,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wzy.wiki.domain.User">
+  <update id="updateByPrimaryKey" parameterType="com.xiaolang.wiki.domain.User">
     update user
     set login_name = #{loginName,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},

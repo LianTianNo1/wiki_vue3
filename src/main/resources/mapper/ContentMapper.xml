@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wzy.wiki.mapper.ContentMapper">
-  <resultMap id="BaseResultMap" type="com.wzy.wiki.domain.Content">
+<mapper namespace="com.xiaolang.wiki.mapper.ContentMapper">
+  <resultMap id="BaseResultMap" type="com.xiaolang.wiki.domain.Content">
     <id column="id" jdbcType="BIGINT" property="id" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wzy.wiki.domain.Content">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiaolang.wiki.domain.Content">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -71,7 +71,7 @@
   <sql id="Blob_Column_List">
     content
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.wzy.wiki.domain.ContentExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.xiaolang.wiki.domain.ContentExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -87,7 +87,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.wzy.wiki.domain.ContentExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.xiaolang.wiki.domain.ContentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -113,17 +113,17 @@
     delete from content
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.wzy.wiki.domain.ContentExample">
+  <delete id="deleteByExample" parameterType="com.xiaolang.wiki.domain.ContentExample">
     delete from content
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.wzy.wiki.domain.Content">
+  <insert id="insert" parameterType="com.xiaolang.wiki.domain.Content">
     insert into content (id, content)
     values (#{id,jdbcType=BIGINT}, #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.wzy.wiki.domain.Content">
+  <insert id="insertSelective" parameterType="com.xiaolang.wiki.domain.Content">
     insert into content
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -142,7 +142,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.wzy.wiki.domain.ContentExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.xiaolang.wiki.domain.ContentExample" resultType="java.lang.Long">
     select count(*) from content
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -177,7 +177,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wzy.wiki.domain.Content">
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaolang.wiki.domain.Content">
     update content
     <set>
       <if test="content != null">
@@ -186,7 +186,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wzy.wiki.domain.Content">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiaolang.wiki.domain.Content">
     update content
     set content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}

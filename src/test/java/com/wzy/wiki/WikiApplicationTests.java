@@ -1,4 +1,4 @@
-//package com.wzy.wiki;
+//package com.xiaolang.wiki;
 //
 //import org.junit.jupiter.api.Test;
 //import org.springframework.boot.test.context.SpringBootTest;

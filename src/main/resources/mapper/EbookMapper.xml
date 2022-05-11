@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wzy.wiki.mapper.EbookMapper">
-  <resultMap id="BaseResultMap" type="com.wzy.wiki.domain.Ebook">
+<mapper namespace="com.xiaolang.wiki.mapper.EbookMapper">
+  <resultMap id="BaseResultMap" type="com.xiaolang.wiki.domain.Ebook">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="category1_id" jdbcType="BIGINT" property="category1Id" />
@@ -74,7 +74,7 @@
     id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, 
     vote_count
   </sql>
-  <select id="selectByExample" parameterType="com.wzy.wiki.domain.EbookExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.xiaolang.wiki.domain.EbookExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -98,13 +98,13 @@
     delete from ebook
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.wzy.wiki.domain.EbookExample">
+  <delete id="deleteByExample" parameterType="com.xiaolang.wiki.domain.EbookExample">
     delete from ebook
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.wzy.wiki.domain.Ebook">
+  <insert id="insert" parameterType="com.xiaolang.wiki.domain.Ebook">
     insert into ebook (id, `name`, category1_id, 
       category2_id, description, cover, 
       doc_count, view_count, vote_count
@@ -114,7 +114,7 @@
       #{docCount,jdbcType=INTEGER}, #{viewCount,jdbcType=INTEGER}, #{voteCount,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.wzy.wiki.domain.Ebook">
+  <insert id="insertSelective" parameterType="com.xiaolang.wiki.domain.Ebook">
     insert into ebook
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -175,7 +175,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.wzy.wiki.domain.EbookExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.xiaolang.wiki.domain.EbookExample" resultType="java.lang.Long">
     select count(*) from ebook
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -231,7 +231,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wzy.wiki.domain.Ebook">
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaolang.wiki.domain.Ebook">
     update ebook
     <set>
       <if test="name != null">
@@ -261,7 +261,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wzy.wiki.domain.Ebook">
+  <update id="updateByPrimaryKey" parameterType="com.xiaolang.wiki.domain.Ebook">
     update ebook
     set `name` = #{name,jdbcType=VARCHAR},
       category1_id = #{category1Id,jdbcType=BIGINT},

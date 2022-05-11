@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wzy.wiki.mapper.DocMapper">
-  <resultMap id="BaseResultMap" type="com.wzy.wiki.domain.Doc">
+<mapper namespace="com.xiaolang.wiki.mapper.DocMapper">
+  <resultMap id="BaseResultMap" type="com.xiaolang.wiki.domain.Doc">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="ebook_id" jdbcType="BIGINT" property="ebookId" />
     <result column="parent" jdbcType="BIGINT" property="parent" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List">
     id, ebook_id, parent, `name`, sort, view_count, vote_count
   </sql>
-  <select id="selectByExample" parameterType="com.wzy.wiki.domain.DocExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.xiaolang.wiki.domain.DocExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -95,13 +95,13 @@
     delete from doc
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.wzy.wiki.domain.DocExample">
+  <delete id="deleteByExample" parameterType="com.xiaolang.wiki.domain.DocExample">
     delete from doc
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.wzy.wiki.domain.Doc">
+  <insert id="insert" parameterType="com.xiaolang.wiki.domain.Doc">
     insert into doc (id, ebook_id, parent, 
       `name`, sort, view_count, 
       vote_count)
@@ -109,7 +109,7 @@
       #{name,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{viewCount,jdbcType=INTEGER}, 
       #{voteCount,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.wzy.wiki.domain.Doc">
+  <insert id="insertSelective" parameterType="com.xiaolang.wiki.domain.Doc">
     insert into doc
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.wzy.wiki.domain.DocExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.xiaolang.wiki.domain.DocExample" resultType="java.lang.Long">
     select count(*) from doc
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -206,7 +206,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wzy.wiki.domain.Doc">
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaolang.wiki.domain.Doc">
     update doc
     <set>
       <if test="ebookId != null">
@@ -230,7 +230,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wzy.wiki.domain.Doc">
+  <update id="updateByPrimaryKey" parameterType="com.xiaolang.wiki.domain.Doc">
     update doc
     set ebook_id = #{ebookId,jdbcType=BIGINT},
       parent = #{parent,jdbcType=BIGINT},

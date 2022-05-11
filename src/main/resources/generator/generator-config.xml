@@ -22,14 +22,14 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/wiki?serverTimezone=Asia/Shanghai"
-                        userId="wiki"
-                        password="wzy666">
+                        connectionURL="jdbc:mysql://localhost:3307/wiki3?serverTimezone=Asia/Shanghai"
+                        userId="root"
+                        password="8426826TL">
         </jdbcConnection>
 
         <!-- domain类的位置 -->
         <javaModelGenerator targetProject="src\main\java"
-                            targetPackage="com.wzy.wiki.domain"/>
+                            targetPackage="com.xiaolang.wiki.domain"/>
 
         <!-- mapper xml的位置 -->
         <sqlMapGenerator targetProject="src\main\resources"
@@ -37,7 +37,7 @@
 
         <!-- mapper类的位置 -->
         <javaClientGenerator targetProject="src\main\java"
-                             targetPackage="com.wzy.wiki.mapper"
+                             targetPackage="com.xiaolang.wiki.mapper"
                              type="XMLMAPPER"/>
 
         <!--<table tableName="demo" domainObjectName="Demo"/>-->

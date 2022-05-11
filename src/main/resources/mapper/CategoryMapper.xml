@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wzy.wiki.mapper.CategoryMapper">
-  <resultMap id="BaseResultMap" type="com.wzy.wiki.domain.Category">
+<mapper namespace="com.xiaolang.wiki.mapper.CategoryMapper">
+  <resultMap id="BaseResultMap" type="com.xiaolang.wiki.domain.Category">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="parent" jdbcType="BIGINT" property="parent" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List">
     id, parent, `name`, sort
   </sql>
-  <select id="selectByExample" parameterType="com.wzy.wiki.domain.CategoryExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.xiaolang.wiki.domain.CategoryExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -92,19 +92,19 @@
     delete from category
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.wzy.wiki.domain.CategoryExample">
+  <delete id="deleteByExample" parameterType="com.xiaolang.wiki.domain.CategoryExample">
     delete from category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.wzy.wiki.domain.Category">
+  <insert id="insert" parameterType="com.xiaolang.wiki.domain.Category">
     insert into category (id, parent, `name`, 
       sort)
     values (#{id,jdbcType=BIGINT}, #{parent,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
       #{sort,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.wzy.wiki.domain.Category">
+  <insert id="insertSelective" parameterType="com.xiaolang.wiki.domain.Category">
     insert into category
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -135,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.wzy.wiki.domain.CategoryExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.xiaolang.wiki.domain.CategoryExample" resultType="java.lang.Long">
     select count(*) from category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -171,7 +171,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wzy.wiki.domain.Category">
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaolang.wiki.domain.Category">
     update category
     <set>
       <if test="parent != null">
@@ -186,7 +186,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wzy.wiki.domain.Category">
+  <update id="updateByPrimaryKey" parameterType="com.xiaolang.wiki.domain.Category">
     update category
     set parent = #{parent,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
