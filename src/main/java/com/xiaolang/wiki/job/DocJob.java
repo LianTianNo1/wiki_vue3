@@ -22,11 +22,11 @@ import javax.annotation.Resource;
     private DocService docService;
 
     /**
-     * 每30秒更新电子书信息
+     * 每30秒更新电子书信息   
      */
     @Scheduled(cron = "3/9 * * * * ? ")
     public void cron() {
-        // 增加日志流水号
+        // 增加日志流水号码  
         MDC.put("LOG_ID", String.valueOf(snowFlake.nextId()));
 
         LOG.info("开始更新电子书下的文档数据");
