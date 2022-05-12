@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
+﻿-- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: wiki3
 -- ------------------------------------------------------
--- Server version	8.0.12
+-- Server version8.0.12
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
