@@ -52,15 +52,6 @@ public class CategoryService {
         LOG.info("总行数: {}",pageInfo.getTotal());
         LOG.info("总页数: {}",pageInfo.getPages());
 
-        /*List<CategoryResp> respList = new ArrayList<>();
-        for (Category category : categoryList) {
-            // CategoryResp categoryResp = new CategoryResp();
-            // BeanUtils.copyProperties(category,categoryResp);
-
-            CategoryResp categoryResp = CopyUtil.copy(category, CategoryResp.class);
-            respList.add(categoryResp);
-        }*/
-
         //列表复制
         List<CategoryQueryResp> list = CopyUtil.copyList(categoryList, CategoryQueryResp.class);
 

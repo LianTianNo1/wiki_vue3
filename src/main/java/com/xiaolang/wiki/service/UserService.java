@@ -49,15 +49,6 @@ public class UserService {
         LOG.info("总行数: {}",pageInfo.getTotal());
         LOG.info("总页数: {}",pageInfo.getPages());
 
-        /*List<UserResp> respList = new ArrayList<>();
-        for (User user : userList) {
-            // UserResp userResp = new UserResp();
-            // BeanUtils.copyProperties(user,userResp);
-
-            UserResp userResp = CopyUtil.copy(user, UserResp.class);
-            respList.add(userResp);
-        }*/
-
         //列表复制
         List<UserQueryResp> list = CopyUtil.copyList(userList, UserQueryResp.class);
 
