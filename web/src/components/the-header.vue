@@ -2,8 +2,8 @@
     <a-layout-header class="header">
         <div class="logo" >
             <a href="/" style="color: white">
-                <img class="re_img" src="@/assets/logo.png" style="width: 60px; height: 60px;">
-                王志颖のwiki
+                <img class="re_img" src="@/assets/logo.png" style="width: 50px; height: 50px;">
+                小浪wiki库
             </a>
         </div>
         <a-menu
@@ -169,7 +169,7 @@
                 // WebSocket
                 if ('WebSocket' in window) {
                     token = Tool.uuid(10);
-                    // 连接地址:ws://127.0.0.1:8081/ws/xxx
+                    // 连接地址:ws://120.25.249.159:8097/ws/xxx
                     websocket = new WebSocket(process.env.VUE_APP_WS_SERVER + '/ws/' + token);
                     initWebSocket();
 
@@ -200,19 +200,27 @@
     .re_img {
         /*border: #000 solid 2px;*/
         /*display: block;*/
-        /*margin: 50px auto;*/
-        /*border-radius: 50%;*/
+        margin: 5px;
+        border-radius: 50%;
         transition: all 2.0s;
     }
     .re_img:hover{
         transform: rotate(360deg);
     }
     .logo {
-        width: 180px;
+        width: 160px;
         height: 64px;
         float: left;
         color: white;
         font-size: 18px;
+        position: relative;
+        margin-right: 40px;
+    }
+    .logo a{
+      width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     .login-menu{
         float: right;

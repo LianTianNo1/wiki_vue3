@@ -14,10 +14,13 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'vue/no-unused-components':'off',
-    '@typescript-eslint/no-explicit-any': 0,
-    'vue/no-unused-vars':0,
-    '@typescript-eslint/no-unused-vars': 0,
-    // '@typescript-eslint/explicit-module-boundary-types':0,
+    'vue/no-deprecated-slot-attribute': 'off',
+    'vue/no-unused-components': 'off',
+    'vue/no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/ban-types': 'off'
+
   }
 }

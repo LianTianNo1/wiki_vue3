@@ -15,7 +15,7 @@
                            left: 0;
                            margin: auto;
                             ">
-               王志颖&copy;
+               小浪wiki库&copy;
            </span>
         </a-layout-footer>
 

@@ -1,8 +1,8 @@
-GET http://localhost:8081/ebook/list?page=1&size=1001
+GET http://localhost:8097/ebook/list?page=1&size=1001
 
 ###
 
-POST http://localhost:8081/ebook/save
+POST http://localhost:8097/ebook/save
 
 {}
 
