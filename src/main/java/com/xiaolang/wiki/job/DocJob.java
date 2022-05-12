@@ -1,4 +1,4 @@
-package com.xiaolang.wiki.job;
+﻿package com.xiaolang.wiki.job;
 
  import com.xiaolang.wiki.service.DocService;
  import com.xiaolang.wiki.util.SnowFlake;
@@ -22,7 +22,7 @@ import javax.annotation.Resource;
     private DocService docService;
 
     /**
-     * 每30秒更新电子书信息
+     * 每过半分钟更新电子书信息
      */
     @Scheduled(cron = "3/9 * * * * ? ")
     public void cron() {
